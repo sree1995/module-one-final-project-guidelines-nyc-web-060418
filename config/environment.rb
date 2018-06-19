@@ -10,4 +10,4 @@ require_all 'app'
 #eastablishing connection with User class
 #which is helping us establish database with
 #all our tables and models
-User.connection
+# User.connection
