@@ -29,11 +29,16 @@ class User < ActiveRecord::Base
   end
 
   def delete_a_company_from_users_list(company_name)
-    company_found = companies.find do |company_instance|
-      company_instance.name == company_name
-    end
-    Portfolio.where(user_id: self.id, company_id: company_found.id).destroy_all
+    company_found = Company.find_by(name: company_name)
+
+    #deletes the company from database
+    Portfolio.where(user_id: self.id, company_id: company_found.id).delete_all
+
+    #deletes the company from Portfolio instance list
+    self.companies.delete(company_found)
   end
+
+
 
 
 
