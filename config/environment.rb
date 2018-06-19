@@ -3,11 +3,7 @@ Bundler.require
 
 
 ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: 'db/development.db')
+ActiveRecord::Base.connection
 
 require_all 'lib'
 require_all 'app'
-
-#eastablishing connection with User class
-#which is helping us establish database with
-#all our tables and models
-# User.connection
