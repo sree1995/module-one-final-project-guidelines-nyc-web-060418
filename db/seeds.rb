@@ -14,5 +14,5 @@ p1  = Portfolio.new(sree, apple)
 p2  = Portfolio.new(sree, google)
 p3  = Portfolio.new(steve, apple)
 p4  = Portfolio.new(devin, google)
-p5  = Portfolio.new(devin, facebook
-p6  = Portfolio.new(devin, netflix))
+p5  = Portfolio.new(devin, facebook)
+p6  = Portfolio.new(devin, netflix)
