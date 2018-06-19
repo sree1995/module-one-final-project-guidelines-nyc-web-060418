@@ -37,6 +37,15 @@ p4.save
 p5.save
 p6.save
 
-puts "HELLO WORLD"
+#####-------------------------x-----------------------------#####
 
-binding.pry
+##methods to run the application
+
+def welcome
+  puts "Welcome to Market Mood"
+  puts "helps you understand public state on stock market"
+end
+
+def run
+  welcome
+end
