@@ -16,22 +16,25 @@ class User < ActiveRecord::Base
 
   #method adds a company from existing list
   def add_a_company_from_the_list(company_name)
-    Portfolio.create(user: self, company: company_name)
+    self.companies << Company.find_by(name: company_name)
   end
+
+  #sree = User.find(1)
 
   #adds a new company to list
   #and the company to the users list
-  def create_and_add_new_company_to_user(company_name, ticker_symbol)
-    new_company = Company.create(company_name, ticker_symbol)
-    add_a_company_from_the_list(create_and_add_new_company_to_user)
+  def create_and_add_new_company_to_user(company_name, given_ticker_symbol)
+    new_company = Company.create(name: company_name, ticker_symbol: given_ticker_symbol)
+    add_a_company_from_the_list(new_company.name)
   end
 
   def delete_a_company_from_users_list(company_name)
-    company_found = self.companies.find do |company_instance|
+    company_found = companies.find do |company_instance|
       company_instance.name == company_name
     end
-
-    Portfolio.where(user_id: self.id, company_id: company_found.id).destroy
+    Portfolio.where(user_id: self.id, company_id: company_found.id).destroy_all
   end
+
+
 
 end
