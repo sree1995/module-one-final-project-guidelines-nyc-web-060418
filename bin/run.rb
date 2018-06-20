@@ -35,13 +35,13 @@ end
 
 def app_flow_before_user_created
   puts " "
-  help_before_user_created
   puts " "
   puts "enter your command"
   user_command = gets.downcase.chomp
 
   case user_command
   when "help", '4'
+    help_before_user_created
     app_flow_before_user_created
   when "login", '1'
     login_process
@@ -75,7 +75,7 @@ end
 
 def companies_in_list
   puts "Companies in our List"
-  puts " "
+  puts "---------------------"
   Company.all.each do |company_instance|
     puts "#{company_instance.name}"
   end
@@ -89,6 +89,7 @@ def login_process
     puts "User doesn't exist!"
     app_flow_before_user_created
   else
+    help_after_user_created
     app_flow_after_user_created(login_name)
   end
 end
@@ -102,26 +103,29 @@ def app_flow_after_user_created(login_name)
 end
 
 def app_flow_after_commands
-  help_after_user_created
   puts "Enter your command"
   user_command = gets.downcase.chomp
 
   case user_command
   when "help", '7'
+    help_after_user_created
     app_flow_after_commands
   when "logout", '8'
+    help_before_user_created
     app_flow_before_user_created
   when "list", '1'
     companies_in_list
     app_flow_after_commands
   when "list my portfolio", '2'
     puts "Your Portfolio Companies"
-    puts " "
+    puts "------------------------"
     @logged_in_user.list_portfolio_companies.each do |company_name|
       puts "#{company_name}"
     end
     app_flow_after_commands
   when "portfolio mood", '3'
+    puts "Your Portfolio Moods"
+    puts "--------------------"
     puts @logged_in_user.list_portfolio_sentiments
     app_flow_after_commands
   when "add company", '4'
@@ -180,4 +184,9 @@ def add_a_company_process
   end
 end
 
-app_flow_before_user_created
+def run
+  help_before_user_created
+  app_flow_before_user_created
+end
+
+run
