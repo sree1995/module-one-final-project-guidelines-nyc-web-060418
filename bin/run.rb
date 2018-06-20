@@ -29,7 +29,8 @@ def help_after_user_created
   puts "create company                        adds a company to the list and adds the company to your portfolio"
   puts "delete company                        removes company from your portfolio list"
   puts "help                                  lists commands aviable"
-  puts "logout                                exit the application"
+  puts "logout                                logs out from your account"
+  puts "exit                                  exit the application"
   puts " "
 end
 
@@ -110,6 +111,8 @@ def app_flow_after_commands
   when "help"
     app_flow_after_commands
   when "logout"
+    app_flow_before_user_created
+  when "exit"
     abort("Thank You. Hope You made $$$$$")
   when "list"
     companies_in_list
