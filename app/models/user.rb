@@ -30,15 +30,14 @@ class User < ActiveRecord::Base
 
   def delete_a_company_from_users_list(company_name)
     company_found = Company.find_by(name: company_name)
-
-    #deletes the company from database
-    portfolio= Portfolio.where(user_id: self.id, company_id: company_found.id)
-
-    self.companies.delete(portfolio)
-
+    self.companies.delete(company_found)
   end
 
-
+  def list_portfolio_sentiments
+    self.companies.map do |company|
+      "#{company.name}: #{company.get_sentiment}"
+    end
+  end
 
 
 

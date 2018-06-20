@@ -12,6 +12,7 @@ google = Company.create(name: "Google", ticker_symbol: "GOOGL")
 microsoft = Company.create(name: "Microsoft", ticker_symbol: "MSFT")
 netflix = Company.create(name: "Netflix", ticker_symbol: "NFLX")
 
+
 Portfolio.destroy_all
 p1  = Portfolio.create(user: sree, company: apple)
 p2  = Portfolio.create(user: sree,  company: google)
