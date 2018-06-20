@@ -15,3 +15,6 @@ db/schema.rb
 
 ##twitter api keys
 application.yml
+
+##indico api key
+indico.application.yml
