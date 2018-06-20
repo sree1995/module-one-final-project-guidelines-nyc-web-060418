@@ -17,9 +17,11 @@ def help_before_user_created
   puts "list                                  lists companies available to add to your portfolio"
   puts "help                                  lists commands aviable"
   puts "exit                                  exit the application"
+  puts " "
 end
 
 def help_after_user_created
+  puts " "
   puts "list                                  lists companies available to add to your portfolio"
   puts "list my portfolio                     lists your portfolio companies"
   puts "portfolio mood                        lists your portfolio companies and their market mood to"
@@ -28,6 +30,7 @@ def help_after_user_created
   puts "delete company                        removes company from your portfolio list"
   puts "help                                  lists commands aviable"
   puts "logout                                exit the application"
+  puts " "
 end
 
 def app_flow_before_user_created
@@ -48,6 +51,7 @@ def app_flow_before_user_created
     app_flow_after_user_created
   when "list"
     companies_in_list
+    app_flow_before_user_created
   when "exit"
     abort("Thank You. Hope You made $$$$$")
   else
@@ -75,10 +79,7 @@ def companies_in_list
   Company.all.each do |company_instance|
     puts "#{company_instance.name}"
   end
-  app_flow_before_user_created
 end
-
-
 
 def login_process
   puts "enter a username"
@@ -94,7 +95,7 @@ end
 
 def app_flow_after_user_created(login_name)
 
-  logged_in_user = User.find_user(login_name)
+  @logged_in_user = User.find_user(login_name)
 
   app_flow_after_commands
 
@@ -112,10 +113,17 @@ def app_flow_after_commands
     abort("Thank You. Hope You made $$$$$")
   when "list"
     companies_in_list
+    app_flow_after_commands
   when "list my portfolio"
-    logged_in_user.list_portfolio_companies
+    puts "Your Portfolio Companies"
+    puts " "
+    @logged_in_user.list_portfolio_companies.each do |company_name|
+      puts "#{company_name}"
+    end
+    app_flow_after_commands
   when "portfolio mood"
-    logged_in_user.list_portfolio_sentiments
+    puts @logged_in_user.list_portfolio_sentiments
+    app_flow_after_commands
   when "add company"
     add_a_company_process
   when "create company"
@@ -129,10 +137,10 @@ def delete_a_company_process
   puts "Enter company name"
   given_company_name = gets.chomp
 
-  if logged_in_user.companies.find_by(name:given_company_name) != nil
-    logged_in_user.delete_a_company_from_users_list(given_company_name)
+  if @logged_in_user.companies.find_by(name:given_company_name) != nil
+    @logged_in_user.delete_a_company_from_users_list(given_company_name)
     app_flow_after_commands
-  else logged_in_user.companies.find_by(name:given_company_name) == nil
+  else @logged_in_user.companies.find_by(name:given_company_name) == nil
     puts "Company doesn't exist in Your portfolio"
     puts "Check your list"
     companies_in_list
@@ -146,8 +154,8 @@ def create_a_company_process
   puts "Enter company ticker_symbol"
   given_ticker_symbol = gets.upcase.chomp
 
-  if logged_in_user.companies.find_by(name:given_company_name) == nil
-    logged_in_user.create_and_add_new_company_to_user(given_company_name, given_ticker_symbol)
+  if @logged_in_user.companies.find_by(name:given_company_name) == nil
+    @logged_in_user.create_and_add_new_company_to_user(given_company_name, given_ticker_symbol)
     app_flow_after_commands
   else
     puts "Company Already Exists!"
@@ -159,8 +167,8 @@ end
 def add_a_company_process
   puts "Enter company name"
   given_company_name = gets.chomp
-  if logged_in_user.companies.find_by(name:given_company_name) == nil
-    logged_in_user.add_a_company_from_the_list(given_company_name)
+  if @logged_in_user.companies.find_by(name:given_company_name) == nil
+    @logged_in_user.add_a_company_from_the_list(given_company_name)
     app_flow_after_commands
   else
     puts "Wrong Company Name, check for case sestivity"
