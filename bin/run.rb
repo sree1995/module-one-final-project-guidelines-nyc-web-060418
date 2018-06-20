@@ -29,13 +29,20 @@ def help_after_user_created
   puts "5. create company                        adds a company to the list and adds the company to your portfolio"
   puts "6. delete company                        removes company from your portfolio list"
   puts "7. help                                  lists commands aviable"
+<<<<<<< HEAD
   puts "8. logout                                log out of this account"
+=======
+  puts "8. logout                                exit the application"
+>>>>>>> sree
   puts "------------------------------------------------------------------"
 end
 
 def app_flow_before_user_created
   puts " "
+<<<<<<< HEAD
   puts " "
+=======
+>>>>>>> sree
   puts "enter your command"
   user_command = gets.downcase.chomp
 
@@ -48,7 +55,7 @@ def app_flow_before_user_created
   when "create account", '2'
     puts "Enter a username to create your account"
     create_account_process
-    app_flow_after_user_created
+
   when "list", '3'
     companies_in_list
     app_flow_before_user_created
@@ -122,6 +129,7 @@ def app_flow_after_commands
     @logged_in_user.list_portfolio_companies.each do |company_name|
       puts "#{company_name}"
     end
+    puts " "
     app_flow_after_commands
   when "portfolio mood", '3'
     puts "Your Portfolio Moods"
