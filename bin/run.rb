@@ -11,17 +11,17 @@ def welcome
 end
 
 def help_before_user_created
-  puts " "
+  puts "------------------------------------------------------------------"
   puts "1. login                                 to log into the application"
   puts "2. create account                        creates a new username"
   puts "3. list                                  lists companies available to add to your portfolio"
   puts "4. help                                  lists commands aviable"
   puts "5. exit                                  exit the application"
-  puts " "
+  puts "------------------------------------------------------------------"
 end
 
 def help_after_user_created
-  puts " "
+  puts "------------------------------------------------------------------"
   puts "1. list                                  lists companies available to add to your portfolio"
   puts "2. list my portfolio                     lists your portfolio companies"
   puts "3. portfolio mood                        lists your portfolio companies and their market mood to"
@@ -30,7 +30,7 @@ def help_after_user_created
   puts "6. delete company                        removes company from your portfolio list"
   puts "7. help                                  lists commands aviable"
   puts "8. logout                                exit the application"
-  puts " "
+  puts "------------------------------------------------------------------"
 end
 
 def app_flow_before_user_created
@@ -110,7 +110,7 @@ def app_flow_after_commands
   when "help", '7'
     app_flow_after_commands
   when "logout", '8'
-    abort("Thank You. Hope You made $$$$$")
+    app_flow_before_user_created
   when "list", '1'
     companies_in_list
     app_flow_after_commands
