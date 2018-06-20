@@ -7,6 +7,11 @@ class User < ActiveRecord::Base
     self.create(name: user_name)
   end
 
+  def self.login(login_name)
+    self.find_by(login_name)
+  end
+
+
   #array of portfolio companies
   def list_portfolio_companies
     self.companies.map do |company_instance|
@@ -38,10 +43,5 @@ class User < ActiveRecord::Base
       "#{company.name}: #{company.get_sentiment}"
     end
   end
-
-
-
-
-
 
 end
