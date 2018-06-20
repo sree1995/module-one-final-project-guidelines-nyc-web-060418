@@ -9,17 +9,6 @@ class Indico_api
   ## assign it to indico api key
   Indico.api_key =  key['CONSUMER_KEY']
 
-
-  # # single example
-  #
-  #
-  # # batch example
-  # Indico.sentiment_hq([
-  #     "I love writing code!",
-  #     "Alexander and the Terrible, Horrible, No Good, Very Bad Day"
-  # ])
-
-
   def self.positive_sentiment(tweets_text)
     positive_percent_values = (Indico.sentiment_hq(tweets_text) * 100.0)
     avg_positive_percent = (positive_percent_values.sum / positive_percent_values.count) * 100
