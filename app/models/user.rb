@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
 
   def list_portfolio_sentiments
     self.companies.map do |company|
-      puts "#{company.name}: #{company.get_sentiment}"
+      "#{company.name}: #{company.get_sentiment}"
     end
   end
 
