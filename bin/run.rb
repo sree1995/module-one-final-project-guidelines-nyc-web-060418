@@ -30,6 +30,7 @@ def help_after_user_created
 end
 
 def app_flow_before_user_created
+  puts " "
   help_before_user_created
   puts " "
   puts "enter your command"
@@ -39,26 +40,59 @@ def app_flow_before_user_created
   when "help"
     help_before_user_created
   when "login"
-    user_command = gets.chomp
-    login_name = user_command
-    if user.login == nil
-      puts "User doesn't exist!"
-      p
-
-    else
-      puts "User already exists"
-      puts "Please try another username"
-      user_command = gets.chomp
-    end
+    login_process
+  when "create account"
+    puts "Enter a username to create your account"
+    create_account_process
+    app_flow_after_user_created
+  when "list"
+    companies_in_list
+  when "exit"
+    abort("Thank You. Hope You made $$$$$")
+  else
+    puts "Invalid command"
+    app_flow_before_user_created
   end
 
 end
 
-def
+def create_account_process
+  user_command = gets.chomp
+  user_name = user_command
+  if User.login(user_name) == nil
+    User.create(user_name)
+    app_flow_after_user_created
+  else
+    puts "Username taken, please enter another name"
+    create_account_process
+  end
+end
 
-def login
+def companies_in_list
+  puts "Companies in our List"
+  puts " "
+  Company.all.each do |company_instance|
+    puts "#{company_instance.name}"
+  end
+  app_flow_before_user_created
+end
 
+
+
+def login_process
+  puts "enter a username"
+  user_command = gets.chomp
+  login_name = user_command
+  if User.login(login_name) == nil
+    puts "User doesn't exist!"
+    app_flow_before_user_created
+  else
+    app_flow_after_user_created
+  end
 end
 
 def app_flow_after_user_created
+  help_after_user_created
 end
+
+app_flow_before_user_created
