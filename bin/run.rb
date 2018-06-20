@@ -12,25 +12,24 @@ end
 
 def help_before_user_created
   puts " "
-  puts "login                                 to log into the application"
-  puts "create account                        creates a new username"
-  puts "list                                  lists companies available to add to your portfolio"
-  puts "help                                  lists commands aviable"
-  puts "exit                                  exit the application"
+  puts "1. login                                 to log into the application"
+  puts "2. create account                        creates a new username"
+  puts "3. list                                  lists companies available to add to your portfolio"
+  puts "4. help                                  lists commands aviable"
+  puts "5. exit                                  exit the application"
   puts " "
 end
 
 def help_after_user_created
   puts " "
-  puts "list                                  lists companies available to add to your portfolio"
-  puts "list my portfolio                     lists your portfolio companies"
-  puts "portfolio mood                        lists your portfolio companies and their market mood to"
-  puts "add company                           adds a company from the list to your portfolio"
-  puts "create company                        adds a company to the list and adds the company to your portfolio"
-  puts "delete company                        removes company from your portfolio list"
-  puts "help                                  lists commands aviable"
-  puts "logout                                logs out from your account"
-  puts "exit                                  exit the application"
+  puts "1. list                                  lists companies available to add to your portfolio"
+  puts "2. list my portfolio                     lists your portfolio companies"
+  puts "3. portfolio mood                        lists your portfolio companies and their market mood to"
+  puts "4. add company                           adds a company from the list to your portfolio"
+  puts "5. create company                        adds a company to the list and adds the company to your portfolio"
+  puts "6. delete company                        removes company from your portfolio list"
+  puts "7. help                                  lists commands aviable"
+  puts "8. logout                                logout from your account"
   puts " "
 end
 
@@ -42,18 +41,18 @@ def app_flow_before_user_created
   user_command = gets.downcase.chomp
 
   case user_command
-  when "help"
+  when "help", '4'
     app_flow_before_user_created
-  when "login"
+  when "login", '1'
     login_process
-  when "create account"
+  when "create account", '2'
     puts "Enter a username to create your account"
     create_account_process
     app_flow_after_user_created
-  when "list"
+  when "list", '3'
     companies_in_list
     app_flow_before_user_created
-  when "exit"
+  when "exit", '5'
     abort("Thank You. Hope You made $$$$$")
   else
     puts "Invalid command"
@@ -108,30 +107,28 @@ def app_flow_after_commands
   user_command = gets.downcase.chomp
 
   case user_command
-  when "help"
+  when "help", '7'
     app_flow_after_commands
-  when "logout"
+  when "logout", '8'
     app_flow_before_user_created
-  when "exit"
-    abort("Thank You. Hope You made $$$$$")
-  when "list"
+  when "list", '1'
     companies_in_list
     app_flow_after_commands
-  when "list my portfolio"
+  when "list my portfolio", '2'
     puts "Your Portfolio Companies"
     puts " "
     @logged_in_user.list_portfolio_companies.each do |company_name|
       puts "#{company_name}"
     end
     app_flow_after_commands
-  when "portfolio mood"
+  when "portfolio mood", '3'
     puts @logged_in_user.list_portfolio_sentiments
     app_flow_after_commands
-  when "add company"
+  when "add company", '4'
     add_a_company_process
-  when "create company"
+  when "create company", '5'
     create_a_company_process
-  when "delete company"
+  when "delete company", '6'
     delete_a_company_process
   end
 end
