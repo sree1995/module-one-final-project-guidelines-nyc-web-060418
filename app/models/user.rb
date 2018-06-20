@@ -19,8 +19,6 @@ class User < ActiveRecord::Base
     self.companies << Company.find_by(name: company_name)
   end
 
-  #sree = User.find(1)
-
   #adds a new company to list
   #and the company to the users list
   def create_and_add_new_company_to_user(company_name, given_ticker_symbol)
