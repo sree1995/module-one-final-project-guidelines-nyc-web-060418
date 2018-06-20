@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
     self.create(name: user_name)
   end
 
-  def self.login(login_name)
+  def self.find_user(login_name)
     self.find_by(name: login_name)
   end
 

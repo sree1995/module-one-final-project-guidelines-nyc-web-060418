@@ -59,7 +59,7 @@ end
 def create_account_process
   user_command = gets.chomp
   user_name = user_command
-  if User.login(user_name) == nil
+  if User.find_user(user_name) == nil
     User.create(user_name)
     app_flow_after_user_created
   else
@@ -83,16 +83,17 @@ def login_process
   puts "enter a username"
   user_command = gets.chomp
   login_name = user_command
-  if User.login(login_name) == nil
+  if User.find_user(login_name) == nil
     puts "User doesn't exist!"
     app_flow_before_user_created
   else
-    app_flow_after_user_created
+    app_flow_after_user_created(login_name)
   end
 end
 
-def app_flow_after_user_created
+def app_flow_after_user_created(login_name)
   help_after_user_created
+  logged_in_user = User.find_user(login_name)
 end
 
 app_flow_before_user_created
