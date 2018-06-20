@@ -29,13 +29,8 @@ def help_after_user_created
   puts "5. create company                        adds a company to the list and adds the company to your portfolio"
   puts "6. delete company                        removes company from your portfolio list"
   puts "7. help                                  lists commands aviable"
-<<<<<<< HEAD
   puts "8. logout                                exit the application"
   puts "------------------------------------------------------------------"
-=======
-  puts "8. logout                                logout from your account"
-  puts " "
->>>>>>> sree
 end
 
 def app_flow_before_user_created
@@ -53,7 +48,7 @@ def app_flow_before_user_created
   when "create account", '2'
     puts "Enter a username to create your account"
     create_account_process
-    app_flow_after_user_created
+
   when "list", '3'
     companies_in_list
     app_flow_before_user_created
@@ -70,8 +65,8 @@ def create_account_process
   user_command = gets.chomp
   user_name = user_command
   if User.find_user(user_name) == nil
-    User.create(user_name)
-    app_flow_after_user_created
+    User.create(name: user_name)
+    app_flow_after_user_created(user_name)
   else
     puts "Username taken, please enter another name"
     create_account_process
