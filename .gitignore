@@ -17,4 +17,4 @@ db/schema.rb
 application.yml
 
 ##indico api key
-indico.application.yml
+indico_application.yml
