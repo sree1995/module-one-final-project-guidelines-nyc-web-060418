@@ -2,7 +2,7 @@ def welcome
   puts " "
   puts "**************************"
   puts "**************************"
-  puts "Welcome to Market Mood Analyzer"
+  puts "Welcome to your Personal - Financial Market Mood Analyzer"
   puts "helps you understand public mood on companies stock at the moment"
   puts "**************************"
   puts "**************************"
