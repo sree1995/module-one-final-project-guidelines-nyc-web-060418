@@ -74,4 +74,8 @@ def create_portfolio_table
     t.headings = ['Company', 'Market Postivity', 'Current Price', 'Open', 'High', 'Low', 'Volume']
     t.rows = @logged_in_user.list_portfolio__mood_and_finances
   end
+  portfolio_table.align_column(1, :right)
+  portfolio_table.align_column(2, :right)
+  portfolio_table
+
 end
