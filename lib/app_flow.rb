@@ -8,7 +8,6 @@ def main_menu
   when "login", '1'
     login_process
   when "create account", '2'
-    puts "Enter a username to create your account"
     create_account_process
   when "list", '3'
     companies_in_list
@@ -26,17 +25,13 @@ def main_menu
 end
 
 def app_flow_after_user_created(login_name)
-
   @logged_in_user = User.find_user(login_name)
-
   user_menu
-
 end
 
 def user_menu
   puts "Enter your command, or enter \"help\" for list of commands"
   user_command = gets.downcase.chomp
-
   case user_command
   when "list", '1'
     companies_in_list

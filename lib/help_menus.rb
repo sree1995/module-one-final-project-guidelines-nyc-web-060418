@@ -18,7 +18,7 @@ end
 
 def user_help_menu
   puts "------------------------------------------------------------------"
-  puts "1. list                                  lists companies available to add to your portfolio"
+  puts "1. list                                  companies listed in database"
   puts "2. list my portfolio                     lists your portfolio companies"
   puts "3. portfolio mood                        lists your portfolio companies and their market mood to"
   puts "4. add company                           adds a company from the list to your portfolio"
