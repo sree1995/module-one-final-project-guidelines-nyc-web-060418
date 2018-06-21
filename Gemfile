@@ -20,3 +20,6 @@ gem 'rest-client'
 
 # for table-format
 gem 'terminal-table'
+
+#spinner for loading
+gem 'tty-spinner'

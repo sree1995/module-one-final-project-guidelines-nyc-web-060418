@@ -1,3 +1,6 @@
+require 'terminal-table'
+require 'tty-spinner'
+
 def main_menu
   puts " "
   puts " "
@@ -47,7 +50,13 @@ def user_menu
   when "portfolio mood", '3'
     puts "Your Portfolio Moods"
     puts "--------------------"
-    puts @logged_in_user.list_portfolio__mood_and_finances
+
+    load_spinner
+
+    puts create_portfolio_table
+
+    load_spinner.stop
+
     user_menu
   when "add company", '4'
     add_a_company_process
@@ -65,4 +74,19 @@ def user_menu
     puts "Invalid Command"
     user_menu
   end
+end
+
+def create_portfolio_table
+  portfolio_table = Terminal::Table.new do |t|
+    t.headings = ['Company', 'Market Postivity', 'Current Price', 'Open', 'High', 'Low', 'Volume']
+    t.rows = @logged_in_user.list_portfolio__mood_and_finances
+  end
+  portfolio_table.align_column(1, :right)
+  portfolio_table.align_column(2, :right)
+  portfolio_table
+end
+
+def load_spinner
+  spinner = TTY::Spinner.new("[:spinner] Analyzing Tweets ...", format: :bouncing_ball)
+  spinner.auto_spin
 end
