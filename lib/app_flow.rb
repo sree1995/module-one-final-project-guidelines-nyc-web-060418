@@ -1,3 +1,5 @@
+require 'terminal-table'
+
 def main_menu
   puts " "
   puts " "
@@ -45,13 +47,9 @@ def user_menu
     puts " "
     user_menu
   when "portfolio mood", '3'
-    puts "Your Portfolio Moods At The Moment"
+    puts "Your Portfolios Market Mood And Stock Data"
     puts "--------------------"
-    puts "Company   |   Market Postivity  |   Current Price   |   High   |    Low   |   Volume"
-
-    puts @logged_in_user.list_portfolio__mood_and_finances
-
-
+    puts create_portfolio_table
     user_menu
   when "add company", '4'
     add_a_company_process
@@ -68,5 +66,12 @@ def user_menu
   else
     puts "Invalid Command"
     user_menu
+  end
+end
+
+def create_portfolio_table
+  portfolio_table = Terminal::Table.new do |t|
+    t.headings = ['Company', 'Market Postivity', 'Current Price', 'Open', 'High', 'Low', 'Volume']
+    t.rows = @logged_in_user.list_portfolio__mood_and_finances
   end
 end
