@@ -11,11 +11,12 @@ def create_account_process
 end
 
 def companies_in_list
-  puts "Companies in our List"
-  puts "---------------------"
+  puts "Companies listed in database"
+  puts "----------------------------"
   Company.all.each do |company_instance|
     puts "#{company_instance.name}"
   end
+  puts "----------------------------"
 end
 
 def login_process
@@ -63,14 +64,38 @@ def create_a_company_process
 end
 
 def add_a_company_process #crashes if invalid company name is given
-  puts "Enter company name, or enter \"list\" for company listing" #list functionality not added yet
-  given_company_name = gets.chomp
-  if @logged_in_user.companies.find_by(name:given_company_name) == nil
-    @logged_in_user.add_a_company_from_the_list(given_company_name)
-    user_menu
-  else
-    puts "Company not found, check for case sestivity"
+  puts "Enter company name, or enter \".list\" for company listing. Enter \".exit\" to return to account screen" #list functionality not added yet
+  input = gets.chomp
+  if input == ".list"
     companies_in_list
     add_a_company_process
+  elsif input == ".exit"
+    user_help_menu
+    user_menu
+  elsif Company.all.find_by(name:input) == nil
+    puts "\nCompany not found, check for case sestivity, or create a new company entry from your account screen\n"
+    companies_in_list
+    add_a_company_process
+  elsif @logged_in_user.companies.find_by(name:input) != nil
+    puts "\nCompany is already in your portfolio\n"
+    companies_in_list
+    add_a_company_process
+  else
+    puts "\nCompany added to your portfolio\n"
+    @logged_in_user.add_a_company_from_the_list(input)
+    user_help_menu
+    user_menu
   end
 end
+# def add_a_company_process #crashes if invalid company name is given
+#   puts "Enter company name, or enter \"list\" for company listing" #list functionality not added yet
+#   given_company_name = gets.chomp
+#   if @logged_in_user.companies.find_by(name:given_company_name) == nil
+#     @logged_in_user.add_a_company_from_the_list(given_company_name)
+#     user_menu
+#   else
+#     puts "Company not found, check for case sestivity"
+#     companies_in_list
+#     add_a_company_process
+#   end
+# end
