@@ -11,3 +11,9 @@ gem 'twitter'
 
 ##gem for indico API
 gem 'indico'
+
+#to parse json data
+gem 'json'
+
+# for http request 
+gem 'rest-client'

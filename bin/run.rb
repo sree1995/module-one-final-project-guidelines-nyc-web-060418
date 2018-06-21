@@ -35,7 +35,6 @@ end
 
 def app_flow_before_user_created
   puts " "
-  puts " "
   puts "enter your command"
   user_command = gets.downcase.chomp
 
