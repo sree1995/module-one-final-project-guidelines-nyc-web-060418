@@ -1,11 +1,13 @@
+require 'colorize'
+
 def welcome
   puts " "
-  puts "**************************"
-  puts "**************************"
-  puts "Welcome to your Personal - Financial Market Mood Analyzer"
-  puts "helps you understand public mood on companies stock at the moment"
-  puts "**************************"
-  puts "**************************"
+  puts "*********************************************************".colorize(:color => :black, :background => :green)
+  puts "*********************************************************".colorize(:color => :black, :background => :green)
+  puts "Welcome to your Personal - Financial Market Mood Analyzer".colorize(:color => :green)
+  puts "helps you understand public mood on companies stock at the moment".colorize(:color => :green)
+  puts "*********************************************************".colorize(:color => :black, :background => :green)
+  puts "*********************************************************".colorize(:color => :black, :background => :green)
   puts " "
 end
 
