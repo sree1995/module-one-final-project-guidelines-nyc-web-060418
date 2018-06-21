@@ -5,7 +5,6 @@ class StockDataAPI
 
   AV_WEB_ADDRESS  = "https://www.alphavantage.co/"
 
-
   ## load yml file
   key = YAML.load_file('alphavantage_apikey.yml')
   API_KEY = key['CONSUMER_KEY']

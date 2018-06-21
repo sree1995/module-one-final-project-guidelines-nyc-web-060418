@@ -10,4 +10,29 @@ class Company < ActiveRecord::Base
     Indico_api.positive_sentiment(self.get_tweets)
   end
 
+  def stock_data
+    StockDataAPI.call(self.ticker_symbol)
+  end
+
+  def stock_open
+    stock_data["1. open"]
+  end
+
+  def stock_high
+    stock_data["2. high"]
+  end
+
+  def stock_low
+    stock_data["3. low"]
+  end
+
+  def stock_close
+    stock_data["4. close"]
+  end
+
+  def stock_volume
+    stock_data["6. volume"]
+  end
+
+
 end

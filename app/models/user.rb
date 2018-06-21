@@ -42,4 +42,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def list_company_stock_data
+    self.companies.map do |company|
+      "Current Price    |   Open    |   High   |    Low   |   Volume                    \n
+      #{company.stock_close}| #{company.stock_open}|  #{company.stock_high}| #{company.stock_low} | #{company.stock_volume}"
+  end
+
 end
