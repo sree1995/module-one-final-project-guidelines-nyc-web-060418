@@ -47,7 +47,7 @@ def user_menu
   when "portfolio mood", '3'
     puts "Your Portfolio Moods"
     puts "--------------------"
-    puts @logged_in_user.list_portfolio_sentiments
+    puts @logged_in_user.list_portfolio__mood_and_finances
     user_menu
   when "add company", '4'
     add_a_company_process
