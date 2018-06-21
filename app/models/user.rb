@@ -37,8 +37,10 @@ class User < ActiveRecord::Base
   end
 
   def list_portfolio__mood_and_finances
+
     self.companies.map do |company|
         [company.name, company.get_sentiment, "$#{company.stock_close.round}", "$#{company.stock_open.round}", "$#{company.stock_high.round}", "$#{company.stock_low.round}", company.stock_volume.round]
+
     end
   end
 

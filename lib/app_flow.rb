@@ -51,11 +51,7 @@ def user_menu
     puts "Your Portfolios Market Mood And Stock Data"
     puts "--------------------"
 
-    load_spinner
-
     puts create_portfolio_table
-
-    load_spinner.stop
 
     user_menu
   when "add company", '4'
@@ -79,6 +75,7 @@ end
 def create_portfolio_table
   portfolio_table = Terminal::Table.new do |t|
     t.headings = ['Company', 'Market Postivity', 'Current Price', 'Open', 'High', 'Low', 'Volume']
+
     t.rows = @logged_in_user.list_portfolio__mood_and_finances
   end
   portfolio_table.align_column(1, :right)
@@ -88,5 +85,4 @@ end
 
 def load_spinner
   spinner = TTY::Spinner.new("[:spinner] Analyzing Tweets ...", format: :bouncing_ball)
-  spinner.auto_spin
 end
