@@ -81,24 +81,25 @@ def create_a_company_process
 end
 
 def delete_a_company_process
-  puts "Enter company name to delete it from your portfolio, or enter \".list\" for company listing. Enter \".exit\" to return to account menu"
+  puts @logged_in_user.list_portfolio_companies
+  puts "Enter company name to delete it from your portfolio, or enter \".list\" to view your portfolio. Enter \".exit\" to return to account menu"
   input = gets.chomp
   case input
   when ".list"
-    companies_in_list
-    add_a_company_process
+    puts @logged_in_user.list_portfolio_companies
+    delete_a_company_process
   when ".exit"
     exit_to_account
   end
   given_company_name = input
   if @logged_in_user.companies.find_by(name:given_company_name) != nil
     @logged_in_user.delete_a_company_from_users_list(given_company_name)
-    user_menu
+    exit_to_account
   else @logged_in_user.companies.find_by(name:given_company_name) == nil
     puts "Company doesn't exist in Your portfolio"
     puts "Check your list"
-    companies_in_list
-    user_menu
+    puts @logged_in_user.list_portfolio_companies
+    delete_a_company_process
   end
 end
 
