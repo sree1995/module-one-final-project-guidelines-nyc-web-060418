@@ -26,7 +26,7 @@ class StockDataAPI
   def relavent_data(ticker_symbol)
     data_hash = api_parameters(ticker_symbol)
 
-    time_series = data_hash["Time Series (Daily)"].collect do |day|
+    time_series = data_hash["Time Series (Daily)"].map do |day|
       day
     end
     time_series[0][1]

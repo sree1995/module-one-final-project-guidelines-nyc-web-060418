@@ -19,5 +19,5 @@ application.yml
 ##indico api key
 indico_application.yml
 
-##alpha vantage api key
+#alpha api
 alphavantage_apikey.yml

@@ -15,5 +15,8 @@ gem 'indico'
 #to parse json data
 gem 'json'
 
-# for http request 
+# for http request
 gem 'rest-client'
+
+# for table-format
+gem 'terminal-table'

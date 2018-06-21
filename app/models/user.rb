@@ -36,15 +36,9 @@ class User < ActiveRecord::Base
     self.companies.delete(company_found)
   end
 
-  def list_portfolio_sentiments
+  def list_portfolio__mood_and_finances
     self.companies.map do |company|
-      "#{company.name}: #{company.get_sentiment}"
-    end
-  end
-
-  def list_company_stock_data
-    self.companies.map do |company|
-      "#{company.stock_close.round}| #{company.stock_open.round}| #{company.stock_high.round}| #{company.stock_low.round} | #{company.stock_volume.round}"
+      "#{company.name}  " + "#{company.get_sentiment}         #{company.stock_close.round}          #{company.stock_open.round}         #{company.stock_high.round}         #{company.stock_low.round}      #{company.stock_volume.round}"
     end
   end
 
