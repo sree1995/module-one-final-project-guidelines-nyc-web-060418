@@ -15,23 +15,23 @@ class Company < ActiveRecord::Base
   end
 
   def stock_open
-    stock_data["1. open"]
+    stock_data["1. open"].to_f
   end
 
   def stock_high
-    stock_data["2. high"]
+    stock_data["2. high"].to_f
   end
 
   def stock_low
-    stock_data["3. low"]
+    stock_data["3. low"].to_f
   end
 
   def stock_close
-    stock_data["4. close"]
+    stock_data["4. close"].to_f
   end
 
   def stock_volume
-    stock_data["6. volume"]
+    stock_data["6. volume"].to_f
   end
 
 
