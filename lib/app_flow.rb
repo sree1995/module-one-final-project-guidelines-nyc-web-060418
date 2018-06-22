@@ -75,7 +75,7 @@ end
 
 def create_portfolio_table
   portfolio_table = Terminal::Table.new do |t|
-    t.headings = ['Company', 'Market Postivity', 'Current Price', 'Open', 'High', 'Low', 'Volume']
+    t.headings = ['Company'.colorize(:yellow), 'Market Postivity'.colorize(:yellow), 'Current Price'.colorize(:yellow), 'Open'.colorize(:yellow), 'High'.colorize(:yellow), 'Low'.colorize(:yellow), 'Volume'.colorize(:yellow)]
 
     t.rows = @logged_in_user.list_portfolio__mood_and_finances
   end

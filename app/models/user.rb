@@ -1,3 +1,5 @@
+require 'colorize'
+
 class User < ActiveRecord::Base
   has_many :portfolios
   has_many :companies, through: :portfolios
@@ -38,8 +40,11 @@ class User < ActiveRecord::Base
 
   def list_portfolio__mood_and_finances
 
+
+
     self.companies.map do |company|
-        [company.name, company.get_sentiment, "$#{company.stock_close.round}", "$#{company.stock_open.round}", "$#{company.stock_high.round}", "$#{company.stock_low.round}", company.stock_volume.round]
+      data = company.stock_values_data
+      [company.name.colorize(:light_blue), company.get_sentiment, "$#{data[0].round}".colorize(:green), "$#{data[1].round}".colorize(:green), "$#{data[2].round}".colorize(:green), "$#{data[3].round}".colorize(:green), data[4].round.to_s.colorize(:cyan)]
 
     end
   end

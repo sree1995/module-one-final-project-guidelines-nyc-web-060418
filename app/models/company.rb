@@ -14,24 +14,9 @@ class Company < ActiveRecord::Base
     StockDataAPI.call(self.ticker_symbol)
   end
 
-  def stock_open
-    stock_data["1. open"].to_f
-  end
-
-  def stock_high
-    stock_data["2. high"].to_f
-  end
-
-  def stock_low
-    stock_data["3. low"].to_f
-  end
-
-  def stock_close
-    stock_data["4. close"].to_f
-  end
-
-  def stock_volume
-    stock_data["6. volume"].to_f
+  def stock_values_data
+    stock_values = stock_data
+    [ stock_values["4. close"].to_f, stock_values["1. open"].to_f, stock_values["2. high"].to_f , stock_values["3. low"].to_f,  stock_values["6. volume"].to_f]
   end
 
 
