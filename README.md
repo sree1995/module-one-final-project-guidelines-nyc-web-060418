@@ -1,7 +1,7 @@
 # Financial Market Mood Analyzer (FMMA)
 ## our command line application gathers tweets related to companies' stock and analyzes the mood of the market!
 
-buit by by [Devin]("https://github.com/DevinPierce") & [Sree]("https://github.com/sreemudunuri")
+buit by [Devin](https://github.com/DevinPierce) & [Sree](https://github.com/sreemudunuri)
 
 ### Instructions to start the application
 
