@@ -39,8 +39,11 @@ def user_help_menu
   puts "4. add company                           adds a company from the list to your portfolio"
   puts "5. create company                        adds a company to the list and adds the company to your portfolio"
   puts "6. delete company                        removes company from your portfolio list"
-  puts "7. help                                  lists commands available"
-  puts "8. logout                                log out of this account"
-  
+  puts "7. list my analysts                      lists analysts you follow"
+  puts "8. add analyst                           follow an analyst from the list"
+  puts "9. create analyst                        add an analyst to the list and follow them"
+  puts "10. delete analyst                       unfollow an analyst"
+  puts "11. help                                 lists commands available"
+  puts "12. logout                               log out of this account"
   puts "------------------------------------------------------------------"
 end
