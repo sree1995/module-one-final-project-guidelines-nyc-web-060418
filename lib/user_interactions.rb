@@ -113,3 +113,78 @@ def exit_to_account
   user_help_menu
   user_menu
 end
+
+def add_a_analyst_process
+  puts "Enter analyst name, or enter \".list\" for analyst listing. Enter \".exit\" to return to account menu".colorize(:red)
+  input = gets.chomp
+  case input
+  when ".list"
+    analysts_in_list
+    add_a_analyst_process
+  when ".exit"
+    exit_to_account
+  end
+  analyst_name_input = input
+  if Analyst.all.find_by(name:analyst_name_input) == nil
+    puts "\nAnalyst not found, check for case sestivity, or create a new analyst entry from your account screen\n".colorize(:red)
+    analysts_in_list
+    add_a_analyst_process
+  elsif @logged_in_user.analysts.find_by(name:analyst_name_input) != nil
+    puts "\nAnalyst is already in your portfolio\n".colorize(:red)
+    analysts_in_list
+    add_a_analyst_process
+  end
+end
+
+def analysts_in_list
+  puts "Analysts listed in database".colorize(:green)
+  puts "----------------------------"
+  Analyst.all.each do |analyst_instance|
+    puts "#{analyst_instance.name}"
+  end
+  puts "----------------------------"
+end
+
+
+
+
+def add_a_analyst_process
+  puts "Enter analyst name, or enter \".exit\" to return to account menu".colorize(:red)
+  given_analyst_name = gets.chomp
+  if given_analyst_name == '.exit' then exit_to_account end
+  puts "Enter Analyst twitter_id".colorize(:red)
+  given_twitter_id = gets.upcase.chomp
+  if given_twitter_id.downcase == '.exit' then exit_to_account end
+
+  if @logged_in_user.analyst.find_by(name:given_analyst_name) == nil
+    @logged_in_user.create_and_add_new_analyst_to_user(given_analyst_name, twitter_id)
+    user_menu
+  else
+    puts "Analyst Already Exists!"
+    analysts_in_list
+    user_menu
+  end
+end
+
+def delete_a_analyst_process
+  puts @logged_in_user.list_analysts
+  puts "Enter analyst name to delete it from your portfolio, or enter \".list\" to view your portfolio. Enter \".exit\" to return to account menu".colorize(:red)
+  input = gets.chomp
+  case input
+  when ".list"
+    puts @logged_in_user.list_analysts
+    delete_a_analyst_process
+  when ".exit"
+    exit_to_account
+  end
+  given_analyst_name = input
+  if @logged_in_user.analysts.find_by(name:given_analyst_name) != nil
+    @logged_in_user.delete_a_analyst_from_users_list(given_analyst_name)
+    exit_to_account
+  else @logged_in_user.analysts.find_by(name:given_analyst_name) == nil
+    puts "Analyst doesn't exist in Your portfolio".colorize(:red)
+    puts "Check your list".colorize(:red)
+    puts @logged_in_user.list_analysts
+    delete_a_analyst_process
+  end
+end

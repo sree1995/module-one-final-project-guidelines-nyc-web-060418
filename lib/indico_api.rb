@@ -14,11 +14,11 @@ class Indico_api
     positive_percent_values = (Indico.sentiment(tweets_text) * 100.0)
     avg_positive_percent = (positive_percent_values.sum / positive_percent_values.count) * 100
     if avg_positive_percent >= 80
-      "#{avg_positive_percent.round}%".colorize(:light_green)
+      "#{avg_positive_percent.round}%"
     elsif avg_positive_percent.between?(40, 80)
-      "#{avg_positive_percent.round}%".colorize(:light_yellow)
-    elsif  avg_positive_percent.between? <= 40
-    "#{avg_positive_percent.round}%".colorize(:light_red)
+      "#{avg_positive_percent.round}%"
+    elsif  avg_positive_percent <= 40
+    "#{avg_positive_percent.round}%"
     end
   end
 

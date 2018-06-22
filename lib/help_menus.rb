@@ -41,5 +41,6 @@ def user_help_menu
   puts "6. delete company                        removes company from your portfolio list"
   puts "7. help                                  lists commands available"
   puts "8. logout                                log out of this account"
+  
   puts "------------------------------------------------------------------"
 end

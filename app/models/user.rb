@@ -42,12 +42,11 @@ class User < ActiveRecord::Base
   end
 
   def list_portfolio__mood_and_finances
-
-
-
     self.companies.map do |company|
       data = company.stock_values_data
-      [company.name.colorize(:light_blue), company.get_sentiment, "$#{data[0].round}".colorize(:green), "$#{data[1].round}".colorize(:green), "$#{data[2].round}".colorize(:green), "$#{data[3].round}".colorize(:green), data[4].round.to_s.colorize(:cyan)]
+      [company.name.colorize(:light_blue), company.get_sentiment, list_portfolio_analyst__mood[company.name], "$#{data[0].round}".colorize(:green), "$#{data[1].round}".colorize(:green), "$#{data[2].round}".colorize(:green), "$#{data[3].round}".colorize(:green), data[4].round.to_s.colorize(:cyan)]
+    end
+  end
 
   def list_analysts
     self.analysts.map do |analyst_instance|
@@ -72,23 +71,23 @@ class User < ActiveRecord::Base
   def list_portfolio_analyst__mood
     hash = {}
     self.companies.each do |company|
-      hash[company.name]
+      hash[company.name] = 0
+      count = 0
       self.analysts.each do |analyst|
-          hash[company.name] += analyst.get_sentiment(company.name, company.ticker_symbol)}
+          hash[company.name] += analyst.get_sentiment(company.name, company.ticker_symbol)[0..-2].to_i
+          count += 1
       end
+      hash[company.name] = "#{hash[company.name]/count}%"
     end
-    array
+    hash
   end
 
   ##
 
   def portfolio_and_analyst
     self.companies.map do |company|
-        [company.name, company.get_sentiment, list_portfolio_companies, "$#{company.stock_close.round}", "$#{company.stock_open.round}", "$#{company.stock_high.round}", "$#{company.stock_low.round}", company.stock_volume.round]
-
+        [company.name, company.get_sentiment, list_portfolio_analyst__mood[company.name], "$#{company.stock_close.round}", "$#{company.stock_open.round}", "$#{company.stock_high.round}", "$#{company.stock_low.round}", company.stock_volume.round]
     end
   end
-
-
 
 end
