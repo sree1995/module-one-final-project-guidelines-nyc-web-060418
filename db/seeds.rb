@@ -1,7 +1,7 @@
 User.destroy_all
 sree = User.create(name: "Sree")
 devin = User.create(name: "Devin")
-john = User.create(name: "John")
+bill = User.create(name: "Bill")
 steve = User.create(name: "Steve")
 
 Company.destroy_all
@@ -25,15 +25,17 @@ p6  = Portfolio.create(user: devin,  company: netflix)
 Analyst.destroy_all
 jim = Analyst.create(name: "Jim Cramer", twitter_id: "jimcramer")
 joe = Analyst.create(name: "Joe Weisenthal", twitter_id: "TheStalwart")
-jeffrey = Analyst.create(name: "Jeffrey Gundlach", twitter_id: "TruthGundlach")
 mw = Analyst.create(name: "Market Watch", twitter_id: "MarketWatch")
+bm = Analyst.create(name: "Bloomberg Markets", twitter_id: "markets")
+nycf = Analyst.create(name: "NYC Finance", twitter_id: "NYCFinance")
+
 
 Follower.destroy_all
 f1 = Follower.create(user: sree, analyst: jim)
 f2 = Follower.create(user: sree, analyst: joe)
 f3 = Follower.create(user: sree, analyst: mw)
 f4 = Follower.create(user: devin, analyst: mw)
-f5 = Follower.create(user: devin, analyst: jeffrey)
-f6 = Follower.create(user: john, analyst: joe)
+f5 = Follower.create(user: devin, analyst: bm)
+f6 = Follower.create(user: bill, analyst: joe)
 f7 = Follower.create(user: steve, analyst: joe)
-f8 = Follower.create(user: steve, analyst: jeffrey)
+f8 = Follower.create(user: steve, analyst: nycf)

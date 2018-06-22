@@ -73,6 +73,7 @@ def create_a_company_process
 
   if @logged_in_user.companies.find_by(name:given_company_name) == nil
     @logged_in_user.create_and_add_new_company_to_user(given_company_name, given_ticker_symbol)
+    puts "Company Added To You List".colorize(:blue)
     user_menu
   else
     puts "Company Already Exists!"
@@ -95,6 +96,7 @@ def delete_a_company_process
   given_company_name = input
   if @logged_in_user.companies.find_by(name:given_company_name) != nil
     @logged_in_user.delete_a_company_from_users_list(given_company_name)
+    puts "Company Deleted".colorize(:red)
     exit_to_account
   else @logged_in_user.companies.find_by(name:given_company_name) == nil
     puts "Company doesn't exist in Your portfolio".colorize(:red)
@@ -133,8 +135,14 @@ def add_a_analyst_process
     puts "\nAnalyst is already in your portfolio\n".colorize(:red)
     analysts_in_list
     add_a_analyst_process
+  else
+    puts "\nAnalyst added to your list\n".colorize(:light_blue)
+    @logged_in_user.add_a_analyst_from_the_list(analyst_name_input)
+    exit_to_account
   end
 end
+
+
 
 def analysts_in_list
   puts "Analysts listed in database".colorize(:green)
@@ -148,16 +156,17 @@ end
 
 
 
-def add_a_analyst_process
+def create_a_analyst_process
   puts "Enter analyst name, or enter \".exit\" to return to account menu".colorize(:red)
   given_analyst_name = gets.chomp
   if given_analyst_name == '.exit' then exit_to_account end
   puts "Enter Analyst twitter_id".colorize(:red)
-  given_twitter_id = gets.upcase.chomp
+  given_twitter_id = gets.chomp
   if given_twitter_id.downcase == '.exit' then exit_to_account end
 
-  if @logged_in_user.analyst.find_by(name:given_analyst_name) == nil
-    @logged_in_user.create_and_add_new_analyst_to_user(given_analyst_name, twitter_id)
+  if @logged_in_user.analysts.find_by(name:given_analyst_name) == nil
+    @logged_in_user.create_and_add_new_analyst_to_user(given_analyst_name, given_twitter_id)
+    puts "Analyst Added To You List".colorize(:blue)
     user_menu
   else
     puts "Analyst Already Exists!"

@@ -61,7 +61,10 @@ def user_menu
     create_a_company_process
   when "delete company", '6'
     delete_a_company_process
-  when "list my analysts", '7'
+  when "list all analysts", '7'
+    analysts_in_list
+    user_menu
+  when "list my analysts", '8'
     puts "Analysts You Follow".colorize(:green)
     puts "------------------------"
     @logged_in_user.list_analysts.each do |analyst_name|
@@ -69,16 +72,16 @@ def user_menu
     end
     puts " "
     user_menu
-  when "add analyst", '8'
+  when "add analyst", '9'
     add_a_analyst_process
-  when 'create analyst', '9'
+  when 'create analyst', '10'
     create_a_analyst_process
-  when 'delete analyst', '10'
+  when 'delete analyst', '11'
     delete_a_analyst_process
-  when "help", '11'
+  when "help", '12'
     user_help_menu
     user_menu
-  when "logout", '12'
+  when "logout", '13'
     main_help_menu
     main_menu
   else
