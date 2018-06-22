@@ -40,11 +40,54 @@ class User < ActiveRecord::Base
   end
 
   def list_portfolio__mood_and_finances
-
     self.companies.map do |company|
         [company.name, company.get_sentiment, "$#{company.stock_close.round}", "$#{company.stock_open.round}", "$#{company.stock_high.round}", "$#{company.stock_low.round}", company.stock_volume.round]
+    end
+  end
+
+
+    ## analyst
+
+  def list_analysts
+    self.analysts.map do |analyst_instance|
+      analyst_instance.name
+    end
+  end
+
+  def add_a_analyst_from_the_list(analyst_name)
+    self.analysts << Analyst.find_by(name: analyst_name)
+  end
+
+  def create_and_add_new_analyst_to_user(analyst_name, given_twitter_id)
+    new_analyst = Analyst.create(name: analyst_name, twitter_id: given_twitter_id)
+    add_a_analyst_from_the_list(new_analyst.name)
+  end
+
+  def delete_a_analyst_from_users_list(analyst_name)
+    analyst_found = Analyst.find_by(name: analyst_name)
+    self.analysts.delete(analyst_found)
+  end
+
+  def list_portfolio_analyst__mood
+    hash = {}
+    self.companies.each do |company|
+      hash[company.name]
+      self.analysts.each do |analyst|
+          hash[company.name] += analyst.get_sentiment(company.name, company.ticker_symbol)}
+      end
+    end
+    array
+  end
+
+  ##
+
+  def portfolio_and_analyst
+    self.companies.map do |company|
+        [company.name, company.get_sentiment, list_portfolio_companies, "$#{company.stock_close.round}", "$#{company.stock_open.round}", "$#{company.stock_high.round}", "$#{company.stock_low.round}", company.stock_volume.round]
 
     end
   end
+
+
 
 end

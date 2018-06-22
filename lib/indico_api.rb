@@ -12,7 +12,7 @@ class Indico_api
   def self.positive_sentiment(tweets_text)
     positive_percent_values = (Indico.sentiment(tweets_text) * 100.0)
     avg_positive_percent = (positive_percent_values.sum / positive_percent_values.count) * 100
-    "#{avg_positive_percent.round}%"
+    "#{avg_positive_percent.round}"
   end
 
 end

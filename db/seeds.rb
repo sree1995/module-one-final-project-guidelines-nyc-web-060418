@@ -20,3 +20,20 @@ p3  = Portfolio.create(user: steve,  company: apple)
 p4  = Portfolio.create(user: devin,  company: google)
 p5  = Portfolio.create(user: devin,  company: facebook)
 p6  = Portfolio.create(user: devin,  company: netflix)
+
+
+Analyst.destroy_all
+jim = Analyst.create(name: "Jim Cramer", twitter_id: "jimcramer")
+joe = Analyst.create(name: "Joe Weisenthal", twitter_id: "TheStalwart")
+jeffrey = Analyst.create(name: "Jeffrey Gundlach", twitter_id: "TruthGundlach")
+mw = Analyst.create(name: "Market Watch", twitter_id: "MarketWatch")
+
+Follower.destroy_all
+f1 = Follower.create(user: sree, analyst: jim)
+f2 = Follower.create(user: sree, analyst: joe)
+f3 = Follower.create(user: sree, analyst: mw)
+f4 = Follower.create(user: devin, analyst: mw)
+f5 = Follower.create(user: devin, analyst: jeffrey)
+f6 = Follower.create(user: john, analyst: joe)
+f7 = Follower.create(user: steve, analyst: joe)
+f8 = Follower.create(user: steve, analyst: jeffrey)
