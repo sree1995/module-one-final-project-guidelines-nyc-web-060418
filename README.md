@@ -34,5 +34,10 @@ Example: to login, you can enter '1' or 'login' in the command line.
 4. add company                           adds a company from the list to your portfolio
 5. create company                        adds a company to the list and adds the company to your portfolio
 6. delete company                        removes company from your portfolio list
-7. help                                  lists commands available
-8. logout                                log out of this account
+7. list all analysts                     analysts in database
+8. list my analysts                      lists analysts you follow
+9. add analyst                           follow an analyst from the list
+10. create analyst                       add an analyst to the list and follow them
+11. delete analyst                       unfollow an analyst
+12. help                                 lists commands available
+13. logout                               log out of this account
