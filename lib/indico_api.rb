@@ -1,5 +1,6 @@
 require 'indico'
 require 'yaml'
+require 'colorize'
 
 class Indico_api
 
@@ -12,7 +13,13 @@ class Indico_api
   def self.positive_sentiment(tweets_text)
     positive_percent_values = (Indico.sentiment(tweets_text) * 100.0)
     avg_positive_percent = (positive_percent_values.sum / positive_percent_values.count) * 100
-    "#{avg_positive_percent.round}"
+    if avg_positive_percent >= 80
+      "#{avg_positive_percent.round}%".colorize(:light_green)
+    elsif avg_positive_percent.between?(40, 80)
+      "#{avg_positive_percent.round}%".colorize(:light_yellow)
+    elsif  avg_positive_percent.between? <= 40
+    "#{avg_positive_percent.round}%".colorize(:light_red)
+    end
   end
 
 end

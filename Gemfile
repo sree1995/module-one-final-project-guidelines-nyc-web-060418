@@ -23,3 +23,6 @@ gem 'terminal-table'
 
 #spinner for loading
 gem 'tty-spinner'
+
+#add color to CLI
+gem 'colorize'

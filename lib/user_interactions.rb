@@ -1,11 +1,12 @@
+require 'colorize'
 
 def login_process
-  puts "enter a username, or enter \".exit\" to return to main menu"
+  puts "enter a username, or enter \".exit\" to return to main menu".colorize(:red)
   user_command = gets.chomp
   if user_command == '.exit' then exit_to_main end
   login_name = user_command
   if User.find_user(login_name) == nil
-    puts "User doesn't exist!"
+    puts "User doesn't exist!".colorize(:red)
     login_process
   else
     user_help_menu
@@ -14,7 +15,7 @@ def login_process
 end
 
 def create_account_process
-  puts "Enter a username to create your account, or enter \".exit\" to return to main menu"
+  puts "Enter a username to create your account, or enter \".exit\" to return to main menu".colorize(:red)
   user_command = gets.chomp
   if user_command == '.exit' then exit_to_main end
   user_name = user_command
@@ -22,13 +23,13 @@ def create_account_process
     User.create(name: user_name)
     app_flow_after_user_created(user_name)
   else
-    puts "Username taken, please enter another name"
+    puts "Username taken, please enter another name".colorize(:red)
     create_account_process
   end
 end
 
 def companies_in_list
-  puts "Companies listed in database"
+  puts "Companies listed in database".colorize(:green)
   puts "----------------------------"
   Company.all.each do |company_instance|
     puts "#{company_instance.name}"
@@ -37,7 +38,7 @@ def companies_in_list
 end
 
 def add_a_company_process
-  puts "Enter company name, or enter \".list\" for company listing. Enter \".exit\" to return to account menu"
+  puts "Enter company name, or enter \".list\" for company listing. Enter \".exit\" to return to account menu".colorize(:red)
   input = gets.chomp
   case input
   when ".list"
@@ -48,25 +49,25 @@ def add_a_company_process
   end
   company_name_input = input
   if Company.all.find_by(name:company_name_input) == nil
-    puts "\nCompany not found, check for case sestivity, or create a new company entry from your account screen\n"
+    puts "\nCompany not found, check for case sestivity, or create a new company entry from your account screen\n".colorize(:red)
     companies_in_list
     add_a_company_process
   elsif @logged_in_user.companies.find_by(name:company_name_input) != nil
-    puts "\nCompany is already in your portfolio\n"
+    puts "\nCompany is already in your portfolio\n".colorize(:red)
     companies_in_list
     add_a_company_process
   else
-    puts "\nCompany added to your portfolio\n"
+    puts "\nCompany added to your portfolio\n".colorize(:light_blue)
     @logged_in_user.add_a_company_from_the_list(company_name_input)
     exit_to_account
   end
 end
 
 def create_a_company_process
-  puts "Enter company name, or enter \".exit\" to return to account menu"
+  puts "Enter company name, or enter \".exit\" to return to account menu".colorize(:red)
   given_company_name = gets.chomp
   if given_company_name == '.exit' then exit_to_account end
-  puts "Enter company ticker_symbol"
+  puts "Enter company ticker_symbol".colorize(:red)
   given_ticker_symbol = gets.upcase.chomp
   if given_ticker_symbol.downcase == '.exit' then exit_to_account end
 
@@ -82,7 +83,7 @@ end
 
 def delete_a_company_process
   puts @logged_in_user.list_portfolio_companies
-  puts "Enter company name to delete it from your portfolio, or enter \".list\" to view your portfolio. Enter \".exit\" to return to account menu"
+  puts "Enter company name to delete it from your portfolio, or enter \".list\" to view your portfolio. Enter \".exit\" to return to account menu".colorize(:red)
   input = gets.chomp
   case input
   when ".list"
@@ -96,8 +97,8 @@ def delete_a_company_process
     @logged_in_user.delete_a_company_from_users_list(given_company_name)
     exit_to_account
   else @logged_in_user.companies.find_by(name:given_company_name) == nil
-    puts "Company doesn't exist in Your portfolio"
-    puts "Check your list"
+    puts "Company doesn't exist in Your portfolio".colorize(:red)
+    puts "Check your list".colorize(:red)
     puts @logged_in_user.list_portfolio_companies
     delete_a_company_process
   end

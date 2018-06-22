@@ -29,6 +29,7 @@ class StockDataAPI
     time_series = data_hash["Time Series (Daily)"].map do |day|
       day
     end
+
     time_series[0][1]
   end
 
