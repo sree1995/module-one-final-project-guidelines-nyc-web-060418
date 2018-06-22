@@ -21,6 +21,8 @@ def create_account_process
   user_name = user_command
   if User.find_user(user_name) == nil
     User.create(name: user_name)
+    puts " "
+    puts "User Created!!".colorize(:light_blue)
     user_help_menu
     app_flow_after_user_created(user_name)
   else
