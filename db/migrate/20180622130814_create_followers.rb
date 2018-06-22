@@ -6,9 +6,3 @@ class CreateFollowers < ActiveRecord::Migration[5.0]
     end
   end
 end
-
-class CreatePortfoliosTable < ActiveRecord::Migration[5.0]
-  def change
-
-  end
-end

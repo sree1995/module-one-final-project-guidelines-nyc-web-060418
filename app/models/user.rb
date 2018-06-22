@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
   has_many :portfolios
   has_many :companies, through: :portfolios
 
+  has_many :followers
+  has_many :analysts, through: :followers
+
   #register a user
   def self.create_user(user_name)
     self.create(name: user_name)

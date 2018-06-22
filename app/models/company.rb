@@ -2,6 +2,9 @@ class Company < ActiveRecord::Base
   has_many :portfolios
   has_many :users, through: :portfolios
 
+  has_many :tweets
+  has_many :analysts, through: :tweets 
+
   def get_tweets
     Twitter_api.gather_tweets(company_ticker_symbol: self.ticker_symbol)
   end
