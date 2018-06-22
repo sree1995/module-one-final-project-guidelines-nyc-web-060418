@@ -17,7 +17,7 @@ class Indico_api
       "#{avg_positive_percent.round}%".colorize(:light_green)
     elsif avg_positive_percent.between?(40, 80)
       "#{avg_positive_percent.round}%".colorize(:light_yellow)
-    elsif  avg_positive_percent.between? <= 40
+    elsif  avg_positive_percent <= 40
     "#{avg_positive_percent.round}%".colorize(:light_red)
     end
   end
